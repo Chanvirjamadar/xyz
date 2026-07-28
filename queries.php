@@ -5,12 +5,11 @@ if (session_status() === PHP_SESSION_NONE) {
 if (!headers_sent()) {
     header('Content-Type: application/json');
 }
-
 // Dynamic DB path resolution
-if (file_exists(__DIR__ . '/../db.php')) {
-    require_once __DIR__ . '/../db.php';
-} elseif (file_exists(__DIR__ . '/db.php')) {
+if (file_exists(__DIR__ . '/db.php')) {
     require_once __DIR__ . '/db.php';
+} elseif (file_exists(__DIR__ . '/../db.php')) {
+    require_once __DIR__ . '/../db.php';
 } else {
     echo json_encode(["success" => false, "message" => "Database configuration file not found"]);
     exit();
@@ -25,27 +24,23 @@ if (!$action) {
 }
 
 // Helper to check student role
-if (!function_exists('requireStudent')) {
-    function requireStudent()
-    {
-        if (!isset($_SESSION['student'])) {
-            echo json_encode(["success" => false, "message" => "Unauthorized student access"]);
-            exit();
-        }
-        return $_SESSION['student'];
+function requireStudent()
+{
+    if (!isset($_SESSION['student'])) {
+        echo json_encode(["success" => false, "message" => "Unauthorized student access"]);
+        exit();
     }
+    return $_SESSION['student'];
 }
 
 // Helper to check staff role
-if (!function_exists('requireStaff')) {
-    function requireStaff()
-    {
-        if (!isset($_SESSION['staff'])) {
-            echo json_encode(["success" => false, "message" => "Unauthorized staff access"]);
-            exit();
-        }
-        return $_SESSION['staff'];
+function requireStaff()
+{
+    if (!isset($_SESSION['staff'])) {
+        echo json_encode(["success" => false, "message" => "Unauthorized staff access"]);
+        exit();
     }
+    return $_SESSION['staff'];
 }
 
 switch ($action) {

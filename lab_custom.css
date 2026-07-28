@@ -1,0 +1,303 @@
+/* --- Online Coding Platform (Lab Practice) Custom CSS --- */
+
+:root {
+    --ide-bg: #1e1e2e;
+    --ide-editor-bg: #1e1e1e;
+    --ide-sidebar: #181825;
+    --ide-header: linear-gradient(135deg, #4f46e5 0%, #3b82f6 50%, #06b6d4 100%);
+    --ide-card-bg: #ffffff;
+    --ide-text-main: #f8fafc;
+    --ide-text-muted: #94a3b8;
+    --ide-accent: #6366f1;
+    --ide-success: #10b981;
+    --ide-danger: #ef4444;
+    --ide-warning: #f59e0b;
+    --ide-border: rgba(255, 255, 255, 0.1);
+}
+
+[data-theme="dark"] .stat-card-custom {
+    background: #1e293b !important;
+    border-color: #334155 !important;
+    color: #f8fafc !important;
+}
+
+/* Header Gradient */
+.lab-header-banner {
+    background: var(--ide-header);
+    border-radius: 20px;
+    color: #ffffff;
+    padding: 24px 30px;
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.25);
+    margin-bottom: 25px;
+    position: relative;
+    overflow: hidden;
+}
+
+.lab-header-banner::after {
+    content: '';
+    position: absolute;
+    right: -50px;
+    top: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+/* Stats Cards */
+.stat-card-custom {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+}
+
+.stat-card-custom:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.stat-icon-wrapper {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+}
+
+/* IDE Main Container */
+.ide-container {
+    background: var(--ide-bg);
+    border-radius: 18px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 270px);
+    min-height: 580px;
+}
+
+/* IDE Top Toolbar */
+.ide-toolbar {
+    background: var(--ide-sidebar);
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--ide-border);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.ide-toolbar-left, .ide-toolbar-right {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Custom Select & Button Styles */
+.ide-select {
+    background: #2a2a3c;
+    color: #f1f5f9;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.ide-select:focus {
+    border-color: var(--ide-accent);
+}
+
+.btn-run-code {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    transition: all 0.2s ease;
+}
+
+.btn-run-code:hover {
+    transform: scale(1.03);
+    box-shadow: 0 6px 16px rgba(16, 185, 129, 0.4);
+}
+
+.btn-run-code:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.btn-ide-tool {
+    background: rgba(255, 255, 255, 0.08);
+    color: #e2e8f0;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 8px 14px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.2s;
+}
+
+.btn-ide-tool:hover {
+    background: rgba(255, 255, 255, 0.18);
+    color: white;
+}
+
+.autosave-badge {
+    font-size: 12px;
+    color: #94a3b8;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 6px 12px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.autosave-badge .pulse-dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--ide-success);
+    border-radius: 50%;
+    display: inline-block;
+    animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(16, 185, 129, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+/* IDE Split Workspace */
+.ide-workspace {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+#monacoEditorContainer {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    min-height: 350px;
+}
+
+/* Terminal & Input Drawer */
+.ide-console-panel {
+    width: 380px;
+    background: #14141e;
+    border-left: 1px solid var(--ide-border);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.console-header {
+    background: #1a1a27;
+    padding: 10px 16px;
+    border-bottom: 1px solid var(--ide-border);
+    font-weight: 700;
+    color: #cbd5e1;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.console-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    gap: 12px;
+    overflow-y: auto;
+}
+
+.console-input-area textarea {
+    width: 100%;
+    background: #0f0f17;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    color: #e2e8f0;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 13px;
+    padding: 10px;
+    resize: vertical;
+    outline: none;
+}
+
+.console-input-area textarea:focus {
+    border-color: var(--ide-accent);
+}
+
+.console-output-box {
+    flex: 1;
+    background: #09090e;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    color: #38bdf8;
+    font-family: 'Fira Code', 'Consolas', monospace;
+    font-size: 13.5px;
+    padding: 12px;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-y: auto;
+    min-height: 180px;
+}
+
+/* History Modal Styling */
+.history-item-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--ide-border);
+    border-radius: 12px;
+    padding: 14px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.history-item-card:hover {
+    background: rgba(99, 102, 241, 0.15);
+    border-color: var(--ide-accent);
+    transform: translateX(4px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .ide-workspace {
+        flex-direction: column;
+    }
+    .ide-console-panel {
+        width: 100%;
+        height: 280px;
+        border-left: none;
+        border-top: 1px solid var(--ide-border);
+    }
+}
